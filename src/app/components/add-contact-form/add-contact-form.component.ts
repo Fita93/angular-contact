@@ -1,15 +1,13 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
+  FormBuilder, FormGroup,
+  Validators
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { take, tap } from 'rxjs';
-import { Contact, ContactState } from 'src/app/models/Contact';
+import { ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
 

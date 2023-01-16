@@ -28,7 +28,10 @@ const MATERIAL_MODULES = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatIconModule
+  MatIconModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
 ];
 
 @NgModule({
@@ -45,10 +48,7 @@ const MATERIAL_MODULES = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ...MATERIAL_MODULES,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent],

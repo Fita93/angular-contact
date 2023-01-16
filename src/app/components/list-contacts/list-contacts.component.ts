@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
+import { defaultDialogConfig } from 'src/app/models/constants';
 import { Contact, ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
@@ -38,10 +39,10 @@ export class ListContactsComponent implements AfterViewInit {
   }
 
   editContact(id: number): void {
-    this.dialog.open(AddContactFormComponent, { data: { view: ViewContactFormEnum.EDIT, id } })
+    this.dialog.open(AddContactFormComponent, { data: { view: ViewContactFormEnum.EDIT, id }, ...defaultDialogConfig })
   }
 
   deleteContact(id: number): void {
-    this.dialog.open(ConfirmDeleteContactComponent, { data: id });
+    this.dialog.open(ConfirmDeleteContactComponent, { data: id, ...defaultDialogConfig });
   }
 }
