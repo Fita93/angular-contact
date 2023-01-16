@@ -1,8 +1,9 @@
-import { createFeatureSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { AppState } from "src/app/models/AppState";
 import { ContactState } from "src/app/models/Contact";
 import { contactEntityAdapter } from "./contact.reducers";
 
-const selectContactState = (state: ContactState) => state;
+
 const {
   selectIds,
   selectEntities,
@@ -10,6 +11,8 @@ const {
   selectTotal,
 } = contactEntityAdapter.getSelectors();
 
+const selectContactState = createFeatureSelector<ContactState>('contacts');
+
 export const ContactSelectors = {
-  selectAll
+  selectAllContacts: createSelector(selectContactState, selectAll)
 };
