@@ -28,12 +28,8 @@ export class AddContactFormComponent {
     })
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
   upsertContact(): void {
     this.store.dispatch(ContactActions.upsertContact({ contact: this.form.value }));
-    this.closeDialog();
+    this.dialogRef.close();
   }
 }
