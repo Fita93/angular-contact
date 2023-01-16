@@ -1,9 +1,8 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable, take, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Contact, ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
