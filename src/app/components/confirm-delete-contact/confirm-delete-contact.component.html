@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Delete contact {{ data.name }} ? </h1>
+<mat-dialog-content>
+  Are you sure to delete the contact :
+  <ul>
+    <li>{{ data.name}}</li>
+    <li>{{ data.email }}</li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="deleteContact()">Confirm Delete</button>
+</mat-dialog-actions>
