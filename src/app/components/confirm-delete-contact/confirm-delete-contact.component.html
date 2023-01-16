@@ -1,12 +1,16 @@
-<h1 mat-dialog-title>Delete contact {{ data.name }} ? </h1>
-<mat-dialog-content>
-  Are you sure to delete the contact :
-  <ul>
-    <li>{{ data.name}}</li>
-    <li>{{ data.email }}</li>
-  </ul>
-</mat-dialog-content>
+<ng-container *ngIf="contact$ | async as contact">
+  <h1 mat-dialog-title>Delete contact {{ contact.name }} ?</h1>
+  <mat-dialog-content>
+    Are you sure to delete the contact :
+    <ul>
+      <li>{{ contact.name }}</li>
+      <li>{{ contact.email }}</li>
+    </ul>
+  </mat-dialog-content>
+</ng-container>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" (click)="deleteContact()">Confirm Delete</button>
+  <button mat-raised-button color="primary" (click)="deleteContact()">
+    Confirm Delete
+  </button>
 </mat-dialog-actions>

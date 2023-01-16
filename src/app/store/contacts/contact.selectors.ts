@@ -14,5 +14,6 @@ const {
 const selectContactState = createFeatureSelector<ContactState>('contacts');
 
 export const ContactSelectors = {
-  selectAllContacts: createSelector(selectContactState, selectAll)
+  selectAllContacts: createSelector(selectContactState, selectAll),
+  selectContactById: (id: number) => createSelector(selectContactState, ({ entities }) => entities[id])
 };

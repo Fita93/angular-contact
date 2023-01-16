@@ -1,35 +1,77 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { take, tap } from 'rxjs';
 import { Contact, ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
+import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
 
 enum AddContactFormFields {
   ID = 'id',
   NAME = 'name',
-  EMAIL = 'email'
+  EMAIL = 'email',
+}
+
+export enum ViewContactFormEnum {
+  NEW = 'new',
+  EDIT = 'edit'
 }
 
 @Component({
   selector: 'app-add-contact-form',
   templateUrl: './add-contact-form.component.html',
   styleUrls: ['./add-contact-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddContactFormComponent {
-  form: FormGroup;
+  form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: DialogRef, private store: Store<ContactState>) {
-    this.form = this.fb.group({
-      [AddContactFormFields.ID]: [null],
-      [AddContactFormFields.NAME]: ['', [Validators.required]],
-      [AddContactFormFields.EMAIL]: ['', [Validators.required, Validators.email]]
-    })
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: DialogRef,
+    private store: Store<ContactState>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { view: ViewContactFormEnum, id: number}
+  ) {
+    const defaultContact = {
+      id: -1,
+      name: '',
+      email: ''
+    };
+    this.store
+      .select(ContactSelectors.selectContactById(this.data.id))
+      .pipe(
+        take(1),
+        tap((contact) => {
+          if (!contact) {
+            contact = {
+              ...defaultContact
+            };
+          }
+          this.form = this.fb.group({
+            [AddContactFormFields.ID]: [contact.id],
+            [AddContactFormFields.NAME]: [contact.name, [Validators.required]],
+            [AddContactFormFields.EMAIL]: [
+              contact.email,
+              [Validators.required, Validators.email],
+            ],
+          });
+        })
+      )
+      .subscribe();
   }
 
   upsertContact(): void {
-    this.store.dispatch(ContactActions.upsertContact({ contact: this.form.value }));
+    this.store.dispatch(
+      ContactActions.upsertContact({ contact: this.form.value })
+    );
     this.dialogRef.close();
   }
 }

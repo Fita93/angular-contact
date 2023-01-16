@@ -13,7 +13,7 @@ export const contactsReducers = createReducer(
     let newContact = {
       ...contact
     }
-    if (!contact.id) {
+    if (contact.id < 0) {
       newContact.id = state.ids.length;
     }
     return contactEntityAdapter.upsertOne(newContact, state);

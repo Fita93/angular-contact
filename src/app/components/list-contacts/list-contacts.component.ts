@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Contact, ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
+import { AddContactFormComponent, ViewContactFormEnum } from '../add-contact-form/add-contact-form.component';
 import { ConfirmDeleteContactComponent } from '../confirm-delete-contact/confirm-delete-contact.component';
 import { ListContactsDataSource } from './list-contacts-datasource';
 
@@ -37,10 +38,10 @@ export class ListContactsComponent implements AfterViewInit {
   }
 
   editContact(id: number): void {
-
+    this.dialog.open(AddContactFormComponent, { data: { view: ViewContactFormEnum.EDIT, id } })
   }
 
-  deleteContact(contact: Contact): void {
-    this.dialog.open(ConfirmDeleteContactComponent, { data: contact });
+  deleteContact(id: number): void {
+    this.dialog.open(ConfirmDeleteContactComponent, { data: id });
   }
 }

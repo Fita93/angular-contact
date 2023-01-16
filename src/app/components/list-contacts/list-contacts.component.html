@@ -6,7 +6,7 @@
         <button mat-mini-fab color="primary" (click)="editContact(row.id)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-mini-fab color="accent" (click)="deleteContact(row)">
+        <button mat-mini-fab color="accent" (click)="deleteContact(row.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -28,7 +28,7 @@
 
   <mat-paginator
     #paginator
-    [length]="dataSource?.data?.length"
+    [length]="dataSource.data.length"
     [pageIndex]="0"
     [pageSize]="10"
     [pageSizeOptions]="[5, 10, 20]"
