@@ -6,9 +6,8 @@ import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { defaultDialogConfig } from 'src/app/models/constants';
 import { Contact, ContactState } from 'src/app/models/Contact';
-import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
-import { AddContactFormComponent, ViewContactFormEnum } from '../add-contact-form/add-contact-form.component';
+import { ContactFormComponent, ViewContactFormEnum } from '../contact-form/contact-form.component';
 import { ConfirmDeleteContactComponent } from '../confirm-delete-contact/confirm-delete-contact.component';
 import { ListContactsDataSource } from './list-contacts-datasource';
 
@@ -39,7 +38,7 @@ export class ListContactsComponent implements AfterViewInit {
   }
 
   editContact(id: number): void {
-    this.dialog.open(AddContactFormComponent, { data: { view: ViewContactFormEnum.EDIT, id }, ...defaultDialogConfig })
+    this.dialog.open(ContactFormComponent, { data: { view: ViewContactFormEnum.EDIT, id }, ...defaultDialogConfig })
   }
 
   deleteContact(id: number): void {

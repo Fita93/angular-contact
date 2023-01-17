@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  AddContactFormComponent,
+  ContactFormComponent,
   ViewContactFormEnum,
-} from './components/add-contact-form/add-contact-form.component';
+} from './components/contact-form/contact-form.component';
 import { defaultDialogConfig } from './models/constants';
 import { ImportExportCSVService } from './services/import-export-csv.service';
 
@@ -23,7 +23,7 @@ export class AppComponent {
   ) {}
 
   openNewContact(): void {
-    this.dialog.open(AddContactFormComponent, {
+    this.dialog.open(ContactFormComponent, {
       data: { view: ViewContactFormEnum.NEW },
       ...defaultDialogConfig,
     });

@@ -15,7 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddContactFormComponent } from './components/add-contact-form/add-contact-form.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { ConfirmDeleteContactComponent } from './components/confirm-delete-contact/confirm-delete-contact.component';
 import { ListContactsComponent } from './components/list-contacts/list-contacts.component';
 import { contactsReducers } from './store/contacts/contact.reducers';
@@ -37,7 +37,7 @@ const MATERIAL_MODULES = [
 @NgModule({
   declarations: [
     AppComponent,
-    AddContactFormComponent,
+    ContactFormComponent,
     ListContactsComponent,
     ConfirmDeleteContactComponent,
   ],

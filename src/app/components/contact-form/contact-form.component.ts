@@ -11,7 +11,7 @@ import { ContactState } from 'src/app/models/Contact';
 import { ContactActions } from 'src/app/store/contacts/contact.actions';
 import { ContactSelectors } from 'src/app/store/contacts/contact.selectors';
 
-enum AddContactFormFields {
+enum ContactFormFields {
   ID = 'id',
   NAME = 'name',
   EMAIL = 'email',
@@ -23,12 +23,12 @@ export enum ViewContactFormEnum {
 }
 
 @Component({
-  selector: 'app-add-contact-form',
-  templateUrl: './add-contact-form.component.html',
-  styleUrls: ['./add-contact-form.component.scss'],
+  selector: 'app-contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddContactFormComponent {
+export class ContactFormComponent {
   form!: FormGroup;
 
   constructor(
@@ -54,9 +54,9 @@ export class AddContactFormComponent {
             };
           }
           this.form = this.fb.group({
-            [AddContactFormFields.ID]: [contact.id],
-            [AddContactFormFields.NAME]: [contact.name, [Validators.required]],
-            [AddContactFormFields.EMAIL]: [
+            [ContactFormFields.ID]: [contact.id],
+            [ContactFormFields.NAME]: [contact.name, [Validators.required]],
+            [ContactFormFields.EMAIL]: [
               contact.email,
               [Validators.required, Validators.email],
             ],
