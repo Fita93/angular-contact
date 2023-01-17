@@ -14,7 +14,8 @@ export const contactsReducers = createReducer(
       ...contact
     }
     if (contact.id < 0) {
-      newContact.id = state.ids.length;
+      // Get the max Id and increment of 1
+      newContact.id = Math.max(...state.ids as number[]) + 1;
     }
     return contactEntityAdapter.upsertOne(newContact, state);
   }),
