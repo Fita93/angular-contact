@@ -1,9 +1,31 @@
 <main>
   <h1>My contacts</h1>
   <div>
-    <button mat-raised-button color="primary" (click)="openNewContact()" >
-      <mat-icon>add</mat-icon>
-      Add new contact</button>
+    <div class="head-actions">
+      <div>
+        <button type="button" mat-raised-button (click)="fileInput.click()">
+          <mat-icon>upload</mat-icon>
+          Import CSV
+        </button>
+        <input
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+          type="file"
+        />
+        <span class="file-name">{{ fileName }}</span>
+      </div>
+      <button mat-raised-button color="primary" (click)="openNewContact()">
+        <mat-icon>add</mat-icon>
+        Add new contact
+      </button>
+    </div>
   </div>
   <app-list-contacts></app-list-contacts>
+  <div class="footer-actions">
+    <button mat-raised-button color="accent" (click)="exportToCSV()">
+      <mat-icon>download</mat-icon>
+      Export to CSV
+    </button>
+  </div>
 </main>

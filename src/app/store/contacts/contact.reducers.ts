@@ -21,4 +21,10 @@ export const contactsReducers = createReducer(
   on(ContactActions.deleteContact, (state, { id }) => {
     return contactEntityAdapter.removeOne(id, state);
   }),
+  on(ContactActions.addContacts, (state, { contacts }) => {
+    return contactEntityAdapter.addMany(contacts, state);
+  }),
+  on(ContactActions.clearContacts, (state) => {
+    return contactEntityAdapter.removeAll(state);
+  }),
 );
